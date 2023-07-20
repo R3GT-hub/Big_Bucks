@@ -5,7 +5,7 @@ import { SingleCoin } from "../config/api";
 import axios from "axios";
 import "./CoinPage.css";
 import CoinInfo from "../Components/CoinInfo";
-import { LinearProgress, Paper, Typography } from "@mui/material";
+import { LinearProgress, Typography } from "@mui/material";
 import ReactHtmlParser from 'html-react-parser';
 import { numberWithCommas } from "../Components/CoinsTable";
 const CoinPage = () => {
@@ -21,12 +21,12 @@ const CoinPage = () => {
 
   useEffect(() => {
     fetchCoin();
-  }, []);
+  },);
 
   if(!coin) return <LinearProgress style={{backgroundColor:"gold"}}/>
   return (
     // <Paper  className="container1" sx={{height:"90vh",width:"100%",backgroundColor:"black",color:"white",marginTop:"10px"}}>
-    <div className="container1" >
+    <div className="container1"  style={{marginBottom:"0px"}}>
       <div className="sidebar">
         <img
           src={coin?.image.large}

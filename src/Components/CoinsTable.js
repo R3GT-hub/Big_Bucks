@@ -16,8 +16,7 @@ import axios from "axios";
 import { CoinList } from "../config/api";
 import { CryptoState } from "../CryptoContext";
 import { Link } from "react-router-dom";
-import NewsSearch from "./CryptoNews";
-
+import "./CoinsTable.css"
 export function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
@@ -71,10 +70,25 @@ export default function CoinsTable() {
           Cryptocurrency Prices by Market Cap
         </Typography>
         <TextField
+ sx={{
+  "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+    borderColor: "black",
+  },
+  "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+    borderColor: "black",
+  },
+  "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+    borderColor: "black",
+  },
+}}
           label="Search For a Crypto Currency.."
           variant="outlined"
-          style={{ marginBottom: 50, width: "100%" }}
+          style={{ marginBottom: 50, width: "100%" ,color:"black" ,borderRadius:"4px"}}
           onChange={(e) => setSearch(e.target.value)}
+          InputLabelProps={{
+            style: { color: "black" },
+           
+          }}
         />
         <Grid container spacing={2} sx={{ gap: 2 }} display="flex">
           <Grid container  spacing={2}>
@@ -87,8 +101,9 @@ export default function CoinsTable() {
                   .map((row) => {
                     const profit = row.price_change_percentage_24h > 0;
                     return (
-                      <Grid item xs={6} md={6} lg={4} key={row.name}>
+                      <Grid item xs={12} md={6} lg={4} key={row.name}>
                         <Card
+                          className="cardcomponent"
                           component={Link}
                           to={`/coins/${row.id}`}
                           sx={{
@@ -98,7 +113,10 @@ export default function CoinsTable() {
                             flexDirection: "row",
                             justifyContent: "space-between",
                             height: "100%",
-                            
+                            transition: "box-shadow 0.3s",  // Add transition property for smooth effect
+                            "&:hover": {
+                              boxShadow: "2px 2px 10px golden",  // Apply the desired box shadow on hover
+                            },
 
                           }}
                         >
@@ -166,9 +184,7 @@ export default function CoinsTable() {
                   })
               )}
             {/* </Grid> */}
-            <Grid item>
-              <NewsSearch />
-            </Grid>
+            
           </Grid>
           <Pagination
             count={Math.ceil(handleSearch().length / 10)}

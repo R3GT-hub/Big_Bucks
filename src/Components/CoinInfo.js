@@ -6,7 +6,6 @@ import "./CoinInfo.css"
 import {
   CircularProgress,
   createTheme,
-  makeStyles,
   ThemeProvider,
 } from "@mui/material";
 import {
@@ -112,12 +111,13 @@ const CoinInfo = ({ coin }) => {
               style={{
                 display: "flex",
                 marginTop: 20,
+                marginBottom:30,
                 justifyContent: "space-around",
                 width: "100%",
               }}
             >
               {chartDays.map((day) => (
-                <SelectButton
+                <SelectButton sx={{}}
                   key={day.value}
                   onClick={() => {setDays(day.value);
                     setflag(false);
